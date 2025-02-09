@@ -18,17 +18,42 @@ public class KthLargest {
         //================================================================
         int target = 2;
         Arrays.sort(a, Collections.reverseOrder());
-        System.out.println(Arrays.toString(a));
+        //System.out.println(Arrays.toString(a));
 
         //tried using collection :)
         Arrays.stream(a).skip(target-1).limit(1).forEach(x-> System.out.println(x));
 
         //easier way using index
-        System.out.println(a[target-1]);
+        //System.out.println(a[target-1]);
 
         //================================================================
         // Nirmal Code ++++++++++++++++++++++++++++++++++++++++++++++++++
         //================================================================
+
+        balajiCode(a);
+
+    }
+
+    private static void balajiCode(Integer[] a) {
+
+        int target = 2;
+        System.out.println("balaji code");
+        for(int i = 0;i<a.length ; i ++)
+        {
+            for(int j = i ; j < a.length ; j++)
+            {
+                if(a[j] < a[i])
+                {
+                    a[i] = a[i] + a[j];
+                    a[j] = a[i] - a[j];
+                    a[i] = a[i] - a[j];
+                }
+            }
+        }
+        //System.out.println(a[a.length-target]);
+
+        //Arrays.stream(a).forEach(System.out::print);
+        Arrays.stream(a).skip(a.length-target).limit(1).forEach(System.out::println);
 
     }
 }
